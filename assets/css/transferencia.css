@@ -145,65 +145,49 @@ main{
 }
 
 /*menu sublinhado*/
-.menu-underline{ 
- 
-    width:100%; 
-    display:block; 
-    float:left;
-   }
-   .menu-underline a{
-       text-decoration: none;
-       color: var(--green-ligth);
-       text-align: center;
-       width: 130px;
-       padding:0.5em 0;
-       display: inline-block;
-       font-weight: bold;
-       transition: all .5s ease-in-out;
-   }
-   .menu-underline a:hover{
-       text-decoration:none;
-      
-   }
-   .menu-underline .underline{
-       width: 130px;
-       height:6px;
-       border-radius:3px; 
-       background-color: var(--green-ligth);
-       transition: all .4s ease-in-out;
-   }
-   .menu-underline a:nth-child(1):hover~.underline{
-       transition: all .4s ease-in-out;
-       
-   }
-   .menu-underline a:nth-child(1):hover{
-       color: var(--green-ligth);
-   }
-    
-   .menu-underline a:nth-child(2):hover{
-       color: var(--green-ligth);
-   }
-   .menu-underline a:nth-child(3):hover{
-       color: var(--green-ligth);
-   }
-   .menu-underline a:nth-child(4):hover{
-       color: var(--green-ligth);
-   }
-   .menu-underline a:nth-child(2):hover~.underline{
-       transform:translate(135px);
-       transition: all .4s ease-in-out;
-       background-color: var(--green-hover);
-   }
-   .menu-underline a:nth-child(3):hover~.underline{
-       transform:translate(270px);
-       transition: all .4s ease-in-out;
-       background-color: var(--green-hover);
-   }
-   .menu-underline a:nth-child(4):hover~.underline{
-       transform:translate(405px);
-       transition: all .4s ease-in-out;
-       background-color:  var(--green-hover);
-   }
+/* Estilos para a barra de navegação */
+.menu-underline {
+  width: 100%; 
+  display: block; 
+  float: left;
+}
+
+.menu-underline a {
+  text-decoration: none;
+  color: var(--green-ligth);
+  text-align: center;
+  width: 130px;
+  padding: 0.5em 0;
+  display: inline-block;
+  font-weight: bold;
+  transition: all .5s ease-in-out;
+}
+
+.menu-underline a:hover {
+  text-decoration: none;
+}
+
+/* Estilos para o sublinhado */
+.menu-underline .underline {
+  width: 130px;
+  height: 6px;
+  border-radius: 3px; 
+  background-color: var(--green-ligth);
+  transition: all .4s ease-in-out;
+  transform: translateX(0); /* Garante que o sublinhado inicie na posição correta */
+}
+
+/* Define o estilo do sublinhado quando o link está ativo (quando clicado) */
+.menu-underline a:target .underline {
+  background-color: var(--green-hover);
+}
+
+/* Define o estilo do link quando ele é o alvo (link correspondente à página atual) */
+.menu-underline a:target {
+  color: var(--green-ligth);
+}
+
+
 
    main{
     padding-top: 20px;

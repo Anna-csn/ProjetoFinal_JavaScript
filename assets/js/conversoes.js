@@ -1,4 +1,3 @@
-
 class ValorAconverter {
     constructor(valor) {
         this.valor = Number(valor) || 0;
@@ -95,7 +94,6 @@ async function converterMoeda() {
     try {
         const taxa = await obterTaxaDaAPI(moeda);
 
-        
         if (taxa === null) {
             Swal.fire({
                 icon: "error",
@@ -104,7 +102,6 @@ async function converterMoeda() {
                 buttons: false,
                 timer: 2500,
               });
-            //resultadoElement.textContent = 'Não foi possível converter';
             return;
         }
 
@@ -125,7 +122,10 @@ async function converterMoeda() {
             desconto,
             valorComDesconto,
         });
-        
+
+        // Define o indicador de conversão bem-sucedida no localStorage
+        localStorage.setItem('conversaoBemSucedida', 'true');
+        window.location.href = './extrato.html';
         
     } catch (error) {
         console.error('Erro ao converter moeda:', error);
@@ -134,5 +134,16 @@ async function converterMoeda() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('botaoConverter').addEventListener('click', converterMoeda);
+
+    // Verifica se houve uma conversão bem-sucedida ao carregar a página
+    const conversaoBemSucedida = localStorage.getItem('conversaoBemSucedida');
+    if (conversaoBemSucedida === 'true') {
+        // Se houve uma conversão bem-sucedida, remove o indicador do localStorage
+        localStorage.removeItem('conversaoBemSucedida');
+
+         // Atualiza o extrato apenas se a conversão foi bem-sucedida
+         atualizarExtrato();
+    }
     document.getElementById('botaoConverter').addEventListener('click', converterMoeda);
 });

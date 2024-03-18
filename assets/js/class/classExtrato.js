@@ -1,7 +1,8 @@
 class Extrato {
-    constructor() {
+    constructor(atualizarExtrato) {
         this.transacoes = [];
         this.saldos = localStorage.getItem('saldos') ? JSON.parse(localStorage.getItem('saldos')) : {};
+        this.atualizarExtrato = atualizarExtrato;
     }
 
     adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
@@ -70,50 +71,4 @@ class Extrato {
     }
 }
 
-const extrato = new Extrato();
-
-function adicionarTransacaoNoExtrato(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
-    extrato.adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto, data);
-}
-
-function atualizarExtrato() {
-    const extratoElement = document.getElementById('extrato');
-    if (extratoElement) {
-        extratoElement.innerHTML = '';
-
-        extrato.gerarExtrato().forEach((transacao) => {
-            const listaItem = document.createElement('li');
-            listaItem.className = 'list-group-item d-flex align-items-center';
-
-            const iconeMarcador = document.createElement('span');
-            iconeMarcador.className = 'fa-solid fa-money-bill-transfer mr-2';
-
-            listaItem.appendChild(iconeMarcador);
-
-            const textoTransacao = document.createElement('div');
-            textoTransacao.textContent = `${transacao.descricao}: ${transacao.valor} ${transacao.moeda} \n Valor Convertido: ${transacao.convertido}, Taxa de conversão: R$ ${transacao.desconto}, Valor informado com Desconto: R$ ${transacao.valorComDesconto} - ${transacao.data}`;
-
-            listaItem.appendChild(textoTransacao);
-
-            extratoElement.appendChild(listaItem);
-        });
-
-        extrato.atualizarSaldos(); // Atualiza os saldos após atualizar o extrato
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const transacoesDoLocalStorage = JSON.parse(localStorage.getItem('transacoes')) || [];
-
-    transacoesDoLocalStorage.forEach((transacao) => {
-        adicionarTransacaoNoExtrato(
-            transacao.descricao,
-            transacao.valor,
-            transacao.moeda,
-            transacao.convertido,
-            transacao.desconto,
-            transacao.valorComDesconto,
-            transacao.data
-        );
-    });
-});
+export default Extrato;

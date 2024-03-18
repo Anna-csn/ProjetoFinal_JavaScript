@@ -103,7 +103,7 @@
                     value="ZAR-BRL">Rand Sul-Africano</option>
                 <option
                     data-content="<img src='https://flagcdn.com/w80/in.png' class='img-thumbnail' width='40' height='60'> Rupia Indiana"
-                    value="JPY-BRL">Rupia Indiana</option>
+                    value="INR-BRL">Rupia Indiana</option>
     
     
             </select>
@@ -130,7 +130,7 @@
             <div>
                 <span class="text--small">Website created by Anna Nascimento</span>
                 <i class="bi bi-cc-circle"></i>
-                <span>2024 Copyright</span>
+                <span id="copyright">Copyright</span>
             </div>
         </div>
     </footer>
@@ -139,6 +139,35 @@
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  <script src="./assets/js/extrato.js" defer></script>
+ <script src="./assets/js/footer.js"></script>
+ 
+
+ <script>
+    // Função para adicionar a classe 'current-page' ao link correspondente à página atual
+    function setCurrentPage() {
+        // Obtém a URL da página atual
+        var currentPageUrl = window.location.href;
+
+        // Obtém todos os links do menu
+        var menuLinks = document.querySelectorAll('.menu-underline a');
+
+        // Percorre todos os links do menu
+        menuLinks.forEach(function(link) {
+            // Obtém o valor do atributo 'href' de cada link
+            var linkUrl = link.getAttribute('href');
+
+            // Verifica se a URL da página atual corresponde à URL do link
+            if (currentPageUrl === linkUrl) {
+                // Adiciona a classe 'current-page' ao link correspondente
+                link.classList.add('current-page');
+            }
+        });
+    }
+
+    // Chama a função ao carregar a página
+    window.onload = setCurrentPage;
+</script>
+
 </body>
 
  

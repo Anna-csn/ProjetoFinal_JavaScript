@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Sublinhado</title>
+    <link rel="stylesheet" href="tste.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" class="nav-link active" onclick="changeActive(this)">Página 1</a></li>
+            <li><a href="#" class="nav-link" onclick="changeActive(this)">Página 2</a></li>
+            <li><a href="#" class="nav-link" onclick="changeActive(this)">Página 3</a></li>
+            <li><a href="#" class="nav-link" onclick="changeActive(this)">Página 4</a></li>
+        </ul>
+    </nav>
+
+    <h1>Conteúdo da Página 2</h1>
+
+    <script>
+    function changeActive(element) {
+        // Remove a classe 'active' de todos os links de navegação
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function(link) {
+            link.classList.remove('active');
+        });
+    
+        // Adiciona a classe 'active' apenas ao link clicado
+        element.classList.add('active');
+    }
+
+    </script>
+</body>
+</html>
