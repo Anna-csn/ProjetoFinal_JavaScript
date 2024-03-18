@@ -31,7 +31,7 @@ async function obterTaxaDaAPI(moeda) {
 
     console.log('Código da Moeda:', codigoMoeda);
 
-    const url = 'http://economia.awesomeapi.com.br/json/last/' + codigoMoeda + '-BRL';
+    const url = 'https://economia.awesomeapi.com.br/json/last/' + codigoMoeda + '-BRL';
 
     console.log('URL da API:', url);
 
