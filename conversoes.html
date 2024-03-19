@@ -141,33 +141,6 @@
  <script src="./assets/js/extrato.js" defer></script>
  <script src="./assets/js/footer.js"></script>
  
-
- <script>
-    // Função para adicionar a classe 'current-page' ao link correspondente à página atual
-    function setCurrentPage() {
-        // Obtém a URL da página atual
-        var currentPageUrl = window.location.href;
-
-        // Obtém todos os links do menu
-        var menuLinks = document.querySelectorAll('.menu-underline a');
-
-        // Percorre todos os links do menu
-        menuLinks.forEach(function(link) {
-            // Obtém o valor do atributo 'href' de cada link
-            var linkUrl = link.getAttribute('href');
-
-            // Verifica se a URL da página atual corresponde à URL do link
-            if (currentPageUrl === linkUrl) {
-                // Adiciona a classe 'current-page' ao link correspondente
-                link.classList.add('current-page');
-            }
-        });
-    }
-
-    // Chama a função ao carregar a página
-    window.onload = setCurrentPage;
-</script>
-
 </body>
 
  
