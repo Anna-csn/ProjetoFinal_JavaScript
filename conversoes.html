@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="favicon Icon" href="../assets/wiseFavicon.ico">
+    <link rel="favicon Icon" href="./assets/img/wiseFavion.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -17,14 +17,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-pt_PT.min.js"></script>
     <link rel="stylesheet" href="./assets/css/conversoes.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <script src="./assets/js/conversoes.js"></script>
+    <script src="./assets/js/conversoes.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;700&display=swap"
-    rel="stylesheet">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
-      </svg>
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send"
+        viewBox="0 0 16 16">
+        <path
+            d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+    </svg>
     <title>Conversor de Moedas</title>
 
 
@@ -40,12 +42,17 @@
                     <i>CODERWISE</i>
                 </div>
 
-                <nav class="menu-underline">
-                    <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
-                    <a href="./conversoes.html"><i class="bi bi-coin"></i>Conversão</a>
-                    <a href="./extrato.html"><i class="bi bi-receipt"></i>Extrato</a>
-                    <a href="./transferencia.html"><i class="bi bi-send"></i> Transferência</a>
-                    <div class="underline"></div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="./index.html" onclick="setActive(this)"><i class="fa-solid fa-house"></i> Home</a>
+                        </li>
+                        <li><a href="./conversoes.html" class="active" onclick="setActive(this)"><i
+                                    class="bi bi-coin"></i>Conversão</a></li>
+                        <li><a href="./extrato.html" onclick="setActive(this)"><i class="bi bi-receipt"></i>Extrato</a>
+                        </li>
+                        <li><a href="./transferencia.html" onclick="setActive(this)""><i class=" bi bi-send"></i>
+                                Transferência</a></li>
+                    </ul>
                 </nav>
             </div>
 
@@ -55,29 +62,31 @@
                 </button>
             </div>
         </div>
-    </header>
 
-    <div class="mobile-menu">
-        <nav>
-            <ul>
-                <li><a class="menu-btn" href="#">Pessoal</a></li>
-                <li><a class="" href="#">Empresa</a></li>
-            </ul>
-        </nav>
-    </div>
+
+        <div class="mobile-menu">
+            <nav class="nav">
+                <ul>
+                    <li><a href="./index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="./conversoes.html"><i class="bi bi-coin"></i>Conversão</a></li>
+                    <li><a href="./extrato.html"><i class="bi bi-receipt"></i>Extrato</a></li>
+                    <li><a href="./transferencia.html"><i class="bi bi-send"></i> Transferência</a></li>
+                </ul>
+            </nav>
+        </div>
 
     </header>
 
     <main>
         <div id="converter">
             <h2>Conversor de Moedas</h2>
-    
+
             <label for="valor">Digite o valor em reais:</label>
             <input type="number" id="valor" placeholder="Digite o valor" min="0" step="0.01">
-    
+
             <label for="moeda">Escolha a moeda:</label>
             <select class="selectpicker" id="moeda" name="iconesel" data-style="btn-primary" style="width: 100%;">
-    
+
                 <!--COLOCAR OS NOMES DAS MOEDAS-->
                 <option value="">Selecione</option>
                 <option
@@ -104,17 +113,17 @@
                 <option
                     data-content="<img src='https://flagcdn.com/w80/in.png' class='img-thumbnail' width='40' height='60'> Rupia Indiana"
                     value="INR-BRL">Rupia Indiana</option>
-    
-    
+
+
             </select>
-    
+
             <p id="cotacao"></p>
-    
+
             <p id="resultado"></p>
-    
+
             <button id="botaoConverter">Converter</button>
             <p id="total"></p>
-    
+
             <a href="extrato.html">Ver Extrato</a>
         </div>
     </main>
@@ -136,42 +145,20 @@
     </footer>
 
     <!-- Scripts do footer -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- <script src="./assets/js/extrato.js" defer></script>
- <script src="./assets/js/footer.js"></script>
- 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./assets/js/extrato.js" defer></script>
+    <script src="./assets/js/footer.js"></script>
+    <script src="./assets/js/menu.js"></script>
+    <script type="module" src="./assets/js/ValorAconverter.js"></script>
+    <script type="module" src="./assets/js/api.js"></script>
+    <script type="module" src="./assets/js/ValorAconverter.js"></script>
+    <script type="module" src="./assets/js/conversoes.js"></script>
+    <script src="./assets/js/menuActive.js"></script>
 
- <script>
-    // Função para adicionar a classe 'current-page' ao link correspondente à página atual
-    function setCurrentPage() {
-        // Obtém a URL da página atual
-        var currentPageUrl = window.location.href;
-
-        // Obtém todos os links do menu
-        var menuLinks = document.querySelectorAll('.menu-underline a');
-
-        // Percorre todos os links do menu
-        menuLinks.forEach(function(link) {
-            // Obtém o valor do atributo 'href' de cada link
-            var linkUrl = link.getAttribute('href');
-
-            // Verifica se a URL da página atual corresponde à URL do link
-            if (currentPageUrl === linkUrl) {
-                // Adiciona a classe 'current-page' ao link correspondente
-                link.classList.add('current-page');
-            }
-        });
-    }
-
-    // Chama a função ao carregar a página
-    window.onload = setCurrentPage;
-</script>
 
 </body>
 
- 
+
 
 </html>
-
-

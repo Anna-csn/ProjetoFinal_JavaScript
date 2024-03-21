@@ -1,86 +1,34 @@
-class ValorAconverter {
-    constructor(valor) {
-        this.valor = Number(valor) || 0;
-    }
 
-    impostoIOF() {
-        this.descontoIOF = this.valor * 0.011;
-        this.valor = this.valor - this.descontoIOF;
-        this.valor = Number(this.valor.toFixed(2));
-    }
+import { obterTaxaDaAPI } from './api.js';
+import realizarConversao from './realizarConvercao.js';
+
+
+// Função para verificar se uma transação é nova
+function verificarTransacaoNova(moeda, convertido) {
+    const transacoes = JSON.parse(localStorage.getItem('transacoes')) || [];
+    const transacaoExistente = transacoes.some(transacao => {
+        return transacao.moeda === moeda && transacao.convertido === convertido;
+    });
+    return !transacaoExistente;
 }
 
-// Mapear o nome da moeda para o código correspondente na API
-function obterCodigoDaMoeda(moeda) {
-    const mapaMoedas = {
-        'AED-BRL': 'AED',
-        'USD-BRL': 'USD',
-        'AUD-BRL': 'AUD',
-        'EUR-BRL': 'EUR',
-        'GBP-BRL': 'GBP',
-        'JPY-BRL': 'JPY',
-        'ZAR-BRL': 'ZAR',
-        'INR-BRL': 'INR',
-    };
-
-    return mapaMoedas[moeda] || '';
-}
-
-async function obterTaxaDaAPI(moeda) {
-    const codigoMoeda = obterCodigoDaMoeda(moeda);
-
-    console.log('Código da Moeda:', codigoMoeda);
-
-    const url = 'http://economia.awesomeapi.com.br/json/last/' + codigoMoeda + '-BRL';
-
-    console.log('URL da API:', url);
-
-    try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            console.error('Erro na resposta da API. Status:', response.status);
-            return null;
-        }
-
-        const corpo = await response.json();
-
-        const precoMoeda = parseFloat(corpo[codigoMoeda + 'BRL'].bid).toFixed(2);
-        console.log('Preço da Moeda:', precoMoeda);
-        document.getElementById('cotacao').innerHTML = `1 ${codigoMoeda} equivale a R$ ${precoMoeda}`;
-
-        return precoMoeda;
-    } catch (error) {
-        console.error('Erro ao obter taxa da API:', error);
-        return null;
-    }
-}
-
-function realizarConversao(valor, taxa) {
-    const descontoIOF = valor * 0.011;
-    const valorComDesconto = valor - descontoIOF;
-    const convertido = valorComDesconto / taxa;
-
-    return {
-        convertido: convertido.toFixed(2),
-        desconto: descontoIOF.toFixed(2),
-        valorComDesconto: valorComDesconto.toFixed(2),
-    };
-}
-
+// Função para adicionar uma transação no localStorage
 function adicionarTransacaoNoLocalStorage(transacao) {
+    try {
+        // Adiciona a data atual à transação
+        transacao.data = new Date().toLocaleString();
 
-    // Adiciona a data atual à transação
-    transacao.data = new Date().toLocaleString();
+        // Recupera os dados existentes do localStorage
+        const dadosAntigos = JSON.parse(localStorage.getItem('transacoes')) || [];
 
-    // Recupera os dados existentes do localStorage
-    const dadosAntigos = JSON.parse(localStorage.getItem('transacoes')) || [];
+        // Adiciona a nova transação aos dados existentes
+        const novosDados = [...dadosAntigos, transacao];
 
-    // Adiciona a nova transação aos dados existentes
-    const novosDados = [...dadosAntigos, transacao];
-
-    // Armazena os dados atualizados no localStorage
-    localStorage.setItem('transacoes', JSON.stringify(novosDados));
+        // Armazena os dados atualizados no localStorage
+        localStorage.setItem('transacoes', JSON.stringify(novosDados));
+    } catch (error) {
+        console.error('Erro ao adicionar transação no localStorage:', error);
+    }
 }
 
 async function converterMoeda() {
@@ -93,7 +41,6 @@ async function converterMoeda() {
 
     try {
         const taxa = await obterTaxaDaAPI(moeda);
-
         if (taxa === null) {
             Swal.fire({
                 icon: "error",
@@ -101,32 +48,42 @@ async function converterMoeda() {
                 text: "Tente mais tarde",
                 buttons: false,
                 timer: 2500,
-              });
+            });
             return;
         }
 
         const { convertido, desconto, valorComDesconto } = realizarConversao(valor, taxa);
-        Swal.fire({
-            icon: "success",
-            text: "Conversão Realizada Com Sucesso",
-            timer: 2500,
-          });
-        resultadoElement.textContent = `${convertido} (Desconto: R$ ${desconto}, Valor com Desconto: R$ ${valorComDesconto})`;
 
-        // Adiciona transação no localStorage
-        adicionarTransacaoNoLocalStorage({
-            descricao: "Conversão",
-            valor,
-            moeda,
-            convertido,
-            desconto,
-            valorComDesconto,
-        });
+        // Verificar se a transação é nova para evitar atualizar o saldo novamente
+        const transacaoNova = verificarTransacaoNova(moeda, convertido);
+        if (transacaoNova) {
+            adicionarTransacaoNoLocalStorage({
+                descricao: "Conversão",
+                valor,
+                moeda,
+                convertido,
+                desconto,
+                valorComDesconto,
+            });
+        }
 
-        // Define o indicador de conversão bem-sucedida no localStorage
-        localStorage.setItem('conversaoBemSucedida', 'true');
-        window.location.href = './extrato.html';
-        
+        // Somente atualiza o resultado e define a conversão como bem-sucedida se a transação for nova
+        if (transacaoNova) {
+            Swal.fire({
+                icon: "success",
+                text: "Conversão Realizada Com Sucesso",
+                timer: 2500,
+            });
+            resultadoElement.textContent = `${convertido} (Desconto: R$ ${desconto}, Valor com Desconto: R$ ${valorComDesconto})`;
+            localStorage.setItem('conversaoBemSucedida', 'true');
+        }
+
+        // Atualiza o extrato apenas se a transação for nova
+        if (transacaoNova) {
+            atualizarExtrato();
+        }
+
+
     } catch (error) {
         console.error('Erro ao converter moeda:', error);
         resultadoElement.textContent = 'Erro ao converter moeda.';
@@ -136,14 +93,9 @@ async function converterMoeda() {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('botaoConverter').addEventListener('click', converterMoeda);
 
-    // Verifica se houve uma conversão bem-sucedida ao carregar a página
     const conversaoBemSucedida = localStorage.getItem('conversaoBemSucedida');
     if (conversaoBemSucedida === 'true') {
-        // Se houve uma conversão bem-sucedida, remove o indicador do localStorage
         localStorage.removeItem('conversaoBemSucedida');
 
-         // Atualiza o extrato apenas se a conversão foi bem-sucedida
-         atualizarExtrato();
     }
-    document.getElementById('botaoConverter').addEventListener('click', converterMoeda);
 });

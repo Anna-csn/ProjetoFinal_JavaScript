@@ -15,9 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="favicon icon" href="./assets/img/wiseFavion.ico">
-    <script src="./assets/js/extrato.js"></script>
-    <script src="./assets/js/footer.js"></script>
-    <script src="./assets/js/menu.js"></script>
+
 </head>
 
 <body>
@@ -30,14 +28,21 @@
                     <i>CODERWISE</i>
                 </div>
 
-                <nav class="menu-underline">
-                    <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
-                    <a href="./conversoes.html"><i class="bi bi-coin"></i>Conversão</a>
-                    <a href="./extrato.html"><i class="bi bi-receipt"></i>Extrato</a>
-                    <a href="./transferencia.html"><i class="bi bi-send"></i> Transferência</a>
-                    <div class="underline"></div>
+
+                <nav class="nav">
+                    <ul>
+                        <li><a href="./index.html" onclick="setActive(this)"><i class="fa-solid fa-house"></i> Home</a>
+                        </li>
+                        <li><a href="./conversoes.html" onclick="setActive(this)"><i
+                                    class="bi bi-coin"></i>Conversão</a></li>
+                        <li><a href="./extrato.html" class="active" onclick="setActive(this)"><i
+                                    class="bi bi-receipt"></i>Extrato</a></li>
+                        <li><a href="./transferencia.html" onclick="setActive(this)"><i class="bi bi-send"></i>
+                                Transferência</a></li>
+                    </ul>
                 </nav>
             </div>
+
 
             <div class="btn-sandwich">
                 <button onclick="menuShow()">
@@ -45,20 +50,22 @@
                 </button>
             </div>
         </div>
+
+        <div class="mobile-menu">
+            <nav class="nav">
+                <ul>
+                    <li><a href="./index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="./conversoes.html"><i class="bi bi-coin"></i>Conversão</a></li>
+                    <li><a href="./extrato.html"><i class="bi bi-receipt"></i>Extrato</a></li>
+                    <li><a href="./transferencia.html"><i class="bi bi-send"></i> Transferência</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="mobile-menu">
-        <nav>
-            <ul>
-                <li><a href="./index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="./conversoes.html"><i class="bi bi-coin"></i>Conversão</a></li>
-                <li><a href="./extrato.html"><i class="bi bi-receipt"></i>Extrato</a></li>
-                <li><a href="./transferencia.html"><i class="bi bi-send"></i> Transferência</a></li>  
-            </ul>
-        </nav>
-    </div>
 
-    </header>
+
+
 
     <main>
         <section>
@@ -89,6 +96,10 @@
             </div>
         </div>
     </footer>
+    <script src="./assets/js/extrato.js"></script>
+    <script src="./assets/js/footer.js"></script>
+    <script src="./assets/js/menu.js" defer></script>
+    <script src="./assets/js/menuActive.js"></script>
 
 
 </body>

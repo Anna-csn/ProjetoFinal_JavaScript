@@ -1,11 +1,13 @@
 /* GERAL */
 
 @import url('https://fonts.cdnfonts.com/css/wise');
+
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
+
 :root {
   --green-gradient: linear-gradient(180deg, #278848 0%, #59a928 100%);
   --white: #fff;
@@ -24,22 +26,23 @@
   --font-secondary: 'Poppins', sans-serif;
 }
 
-.h2{
-    font-family: 'WISE', sans-serif;
-    font-size: large;
-    font-style: normal;
+.h2 {
+  font-family: 'WISE', sans-serif;
+  font-size: large;
+  font-style: normal;
 }
 
-.html{
-    scroll-behavior: smooth;
+.html {
+  scroll-behavior: smooth;
 }
+
 body {
-   height: 500vh;
+  height: 500vh;
 }
 
-main{
-    flex:  1;
-    margin-top: 100px;
+main {
+  flex: 1;
+  margin-top: 100px;
 }
 
 /* HEADER */
@@ -50,18 +53,20 @@ main{
   background-color: var(--black-green);
   color: var(--green-ligth);
   display: flex;
-  /*justify-content: space-between;*/
-  position: fixed; 
-  top: 0; 
-  width: 100%; 
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
   z-index: 99999;
 }
 
 .menu-left {
   display: flex;
   justify-content: space-around;
-  align-items: center ;
+  align-items: center;
 }
+
 
 .logo {
   font-family: var(--font-primary);
@@ -72,6 +77,7 @@ main{
   justify-content: space-around;
   margin-right: 60px;
 }
+
 .logo img {
   width: 32px;
   margin-right: -5px;
@@ -84,19 +90,21 @@ main{
   gap: 30px;
   color: var(--green-ligth);
 }
+
 .menu-link {
   text-decoration: none;
   color: var(--green-ligth);
   cursor: pointer;
   padding: 10px;
 }
+
 .menu-link:hover {
   padding: 10px;
   background: var(--green-transparent);
   border-radius: 15px;
 }
 
-.menu-btn{
+.menu-btn {
   background-color: var(--green-ligth);
   padding: 8px 20px;
   border: none;
@@ -105,6 +113,7 @@ main{
   color: var(--black-green);
   cursor: pointer;
 }
+
 .menu-btn:hover {
   filter: brightness(1.3);
 }
@@ -117,6 +126,7 @@ main{
   border: none;
   border-radius: 50%;
 }
+
 .mobile-menu {
   display: none;
   background: var(--gray-100);
@@ -128,6 +138,7 @@ main{
   margin-top: 1.5rem;
   text-align: left;
 }
+
 .mobile-menu nav ul li {
   list-style: none;
   text-align: left;
@@ -135,116 +146,113 @@ main{
   font-weight: 300;
   padding-top: 2.5rem;
 }
-.mobile-menu nav ul li a{
+
+.mobile-menu nav ul li a {
   text-decoration: none;
   color: var(--black-700);
   text-align: left;
 }
-.open-menu{
+
+.open-menu {
   display: block;
 }
 
-/*menu sublinhado*/
-/* Estilos para a barra de navegação */
-.menu-underline {
-  width: 100%; 
-  display: block; 
-  float: left;
+/*menu opções*/
+
+.nav ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.menu-underline a {
+.nav ul li {
+  display: inline-block;
+  margin-right: 20px;
+  justify-content: center;
+}
+
+.nav ul li i {
+  margin-right: 5px;
+}
+
+.nav ul li :hover {
+  color: var(--green-hover);
+}
+
+.nav ul li a {
   text-decoration: none;
   color: var(--green-ligth);
-  text-align: center;
-  width: 130px;
-  padding: 0.5em 0;
-  display: inline-block;
-  font-weight: bold;
-  transition: all .5s ease-in-out;
+  position: relative;
 }
 
-.menu-underline a:hover {
-  text-decoration: none;
+.nav ul li a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--green-hover);
+  border-radius: 2px;
 }
 
-/* Estilos para o sublinhado */
-.menu-underline .underline {
-  width: 130px;
-  height: 6px;
-  border-radius: 3px; 
-  background-color: var(--green-ligth);
-  transition: all .4s ease-in-out;
-  transform: translateX(0); /* Garante que o sublinhado inicie na posição correta */
+main {
+  padding-top: 20px;
+  flex: 1;
 }
 
-/* Define o estilo do sublinhado quando o link está ativo (quando clicado) */
-.menu-underline a:target .underline {
+/*cards de saldo*/
+#saldos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+  margin-bottom: 90px;
+}
+
+.card-saldo {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  transition: transform 0.3s;
+}
+
+.card-saldo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-color: var(--black-green);
   background-color: var(--green-hover);
 }
 
-/* Define o estilo do link quando ele é o alvo (link correspondente à página atual) */
-.menu-underline a:target {
-  color: var(--green-ligth);
+.card-saldo .card-body {
+  padding: 15px;
 }
 
+.card-saldo .card-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
 
+.card-saldo .card-text {
+  font-size: 1.2em;
+  color: var(--black-700);
+}
 
-   main{
-    padding-top: 20px;
-    flex: 1;
-   }
+.list-group-item {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-   #saldos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* ou 'space-between', dependendo do efeito desejado */
-    margin: 10px ;
-    margin-bottom: 90px;
-  }
-  
-  .card-saldo {
-    flex: 1;
-    min-width: 200px; /* Defina um tamanho mínimo se necessário */
-    margin: 10px;
-    box-sizing: border-box;
-    border-radius: 10px; /* Adiciona bordas arredondadas */
-    overflow: hidden; /* Garante que o conteúdo não ultrapasse as bordas arredondadas */
-    border: 2px solid #ccc; /* Adiciona uma borda para destacar os cards */
-    transition: transform 0.3s; /* Adiciona uma transição suave ao passar o mouse */
-  }
-  
-  .card-saldo:hover {
-    transform: scale(1.05); /* Aumenta o tamanho do card ao passar o mouse */
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave ao passar o mouse */
-  border-color: #666; /* Muda a cor da borda ao passar o mouse */
-  }
-  
-  .card-saldo .card-body {
-    padding: 15px;
-  }
-  
-  .card-saldo .card-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .card-saldo .card-text {
-    font-size: 1.2em;
-    color: #555;
-  }
+/*formulário de transferencia*/
 
-  .list-group-item {
-    margin-top: 20px;
-    display: flex;
-    align-items: center; /* Alinhar verticalmente ao centro */
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /*formulário de transferencia*/
-/* Estilo geral do formulário */
 #loginForm {
   display: flex;
   flex-direction: column;
@@ -257,28 +265,28 @@ main{
   margin: 0 auto;
 }
 
-/* Estilo do cabeçalho */
+
 #loginForm h1 {
   margin: 0 0 20px;
   font-weight: 500;
   font-size: 2em;
 }
 
-/* Estilo dos parágrafos */
+
 #loginForm p {
   font-size: 14px;
   color: #666;
   margin-bottom: 15px;
 }
 
-/* Estilo dos rótulos */
+
 #loginForm label {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
-/* Estilo das caixas de entrada */
+
 #loginForm input {
   padding: 12px;
   font-size: 14px;
@@ -293,7 +301,7 @@ main{
   border-color: #454745;
 }
 
-/* Estilo do link */
+
 #loginForm a {
   font-size: 13px;
   color: #555;
@@ -304,9 +312,9 @@ main{
   color: #163300;
 }
 
-/* Estilo do botão */
+
 .btn {
-  background-color:  #163300;
+  background-color: #163300;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
@@ -324,92 +332,158 @@ main{
 }
 
 .btn {
-    margin-top: px;
-    background-color: var(--green-ligth);
-    color:var(--black-green);
-    font-size: 14px;
-    font-weight: 600;
-    border: none !important;
-    transition: all linear 160ms;
-    cursor: pointer;
-    margin: 0 !important;
-    padding: 8px 20px !important;
-    border-radius: 15px !important;
-    text-decoration: none;
+  margin-top: px;
+  background-color: var(--green-ligth);
+  color: var(--black-green);
+  font-size: 14px;
+  font-weight: 600;
+  border: none !important;
+  transition: all linear 160ms;
+  cursor: pointer;
+  margin: 0 !important;
+  padding: 8px 20px !important;
+  border-radius: 15px !important;
+  text-decoration: none;
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    filter: brightness(1.3);
-    background-color: 
+  transform: scale(1.05);
+  filter: brightness(1.3);
+  background-color:
     #9FE870;
 
 }
 
-  
 
-/* Adicione um espaço considerável entre o formulário e os cards */
+
+
 #formulario-transferencia {
-margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .form-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px; /* Adiciona bordas arredondadas */
-    box-sizing: border-box;
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* Adiciona bordas arredondadas */
+  box-sizing: border-box;
 }
 
 select {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 textarea {
-    height: 40px; /* Ajuste a altura conforme necessário */
-    resize: vertical; /* Permite redimensionamento vertical */
+  height: 40px;
+  /* Ajuste a altura conforme necessário */
+  resize: vertical;
+  /* Permite redimensionamento vertical */
 }
 
 button {
-    padding: 10px;
-    background-color: var(--green-ligth);
-    color: white;
-    border: none;
-    border-radius: 10px; /* Adiciona bordas arredondadas */
-    cursor: pointer;
+  padding: 10px;
+  background-color: var(--green-ligth);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  /* Adiciona bordas arredondadas */
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: var(--green-hover);
+  background-color: var(--green-hover);
 }
 
-#conteudo{
-    margin-top: 20px
+#conteudo {
+  margin-top: 20px
 }
 
 
-   footer  {
-    background-color: var(--black-green);
-            color: var(--gray-400);
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+footer {
+  background-color: var(--black-green);
+  color: var(--gray-400);
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
-  
+
+.btn-sandwich button {
+  display: none;
+  padding: 10px;
+  background-color: var(--green-transparent);
+  border: none;
+  border-radius: 50%;
+  float: right;
+  ;
+}
+
+.menu-rigth {
+  margin-left: auto;
+  /* Isso empurrará o conteúdo para a direita */
+  display: flex;
+  align-items: center
+}
+
+.menu-item {
+  display: flex;
+  justify-content: left;
+  list-style: none;
+  gap: 30px;
+  color: var(--green-ligth);
+}
 
 
+@media screen and (max-width: 992px) {
+  .btn-sandwich button {
+    display: block;
+  }
+
+  .menu-desktop {
+    border-bottom: solid 0.1px;
+    border-color: var(--green-ligth);
+  }
+
+  .menu-desktop nav {
+    display: none;
+  }
+
+  .mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: right;
+    text-align: center;
+  }
+
+  .mobile-menu ul li {
+    padding-top: 1.2rem;
+  }
+
+  .mobile-menu ul :hover {
+    color: var(--green-hover);
+  }
+
+  @media screen and (max-width: 430px) {
+    .link-moreInfo {
+      font-size: .8rem;
+    }
+  }
+}

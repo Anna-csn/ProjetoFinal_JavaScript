@@ -1,7 +1,8 @@
 class Extrato {
     constructor() {
         this.transacoes = [];
-        this.saldos = localStorage.getItem('saldos') ? JSON.parse(localStorage.getItem('saldos')) : {};
+        const saldosFromStorage = localStorage.getItem('saldos');
+        this.saldos = saldosFromStorage && this.isJSON(saldosFromStorage) ? JSON.parse(saldosFromStorage) : {};
     }
 
     adicionarTransacao(descricao, valor, moeda, convertido, desconto, valorComDesconto, data) {
@@ -66,6 +67,15 @@ class Extrato {
             }
         } else {
             console.error('Elemento com ID "saldos" não encontrado.');
+        }
+    }
+
+    isJSON(str) {
+        try {
+            JSON.parse(str);
+            return true;
+        } catch (e) {
+            return false;
         }
     }
 }

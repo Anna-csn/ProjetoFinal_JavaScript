@@ -1,4 +1,4 @@
-
+//Abre o menu mobile aravés do clique quando as dimensões das telas são alteradas 
  function menuShow() {
     let menuMobile = document.querySelector('.mobile-menu');
     if (menuMobile.classList.contains('open-menu')) {

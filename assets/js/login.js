@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         button: false,
                         timer: 5000,
                     });
-                    return delay(5000); // Aguarde o tempo de exibição da mensagem
+                    return delay(5000);
 
                 })
 
                 .then(() => {
-                    loadingScreen.style.display = 'none'; // Esconde a tela de carregament
+                    loadingScreen.style.display = 'none';
                     window.location.href = 'conversoes.html';
 
                 });
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 buttons: false,
                 timer: 5500,
             });
-            //loginMessage.innerHTML = "Credenciais inválidas. Tente novamente.";
+
         }
 
     });

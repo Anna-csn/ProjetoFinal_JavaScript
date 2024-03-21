@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.cdnfonts.com/css/wise" rel="stylesheet">
     <link rel="favicon icon" href="./assets/img/wiseFavion.ico">
-    <link rel="stylesheet" href="./assets/css/cadastro.css"> 
+    <link rel="stylesheet" href="./assets/css/cadastro.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Cadastre-se</title>
 </head>
+
 <body>
 
     <div class="loading-screen" id="loadingScreen">
@@ -17,30 +19,31 @@
     </div>
     <div class="page">
 
-    <form method="post" class="formRegistration" id="registerForm">
-        <h1 >Cadastre-se</h1>
-        <p>Digite os seus dados cadastrais no campo abaixo.</p>
-        <!-- Campo de Nome-->
+        <form method="post" class="formRegistration" id="registerForm">
+            <h1>Cadastre-se</h1>
+            <p>Digite os seus dados cadastrais no campo abaixo.</p>
+            <!-- Campo de Nome-->
             <label for="nome">Nome:</label>
             <input type="nome" id="nome" name="nome" required>
-        <!-- Campo para data de nascimento -->
+            <!-- Campo para data de nascimento -->
             <label for="data_nascimento">Data de Nascimento:</label>
             <input type="date" id="data_nascimento" name="data_nascimento" required>
-        <!-- Campo de E-mail -->
+            <!-- Campo de E-mail -->
             <label for="email">Seu e-mail:</label>
             <input type="email" id="email" name="email" required>
-        <!-- Campo de Senha -->
+            <!-- Campo de Senha -->
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
-        <!-- Botão de Envio -->
-        <input type="submit" value="Cadastrar" class="btn" >
-        <div id = "mensagem">
-            <a href="login.html">Já tem conta? Faça login</a>
-        </div>
-        
-    </form>
-</div>
+            <!-- Botão de Envio -->
+            <input type="submit" value="Cadastrar" class="btn">
+            <div id="mensagem">
+                <a href="login.html">Já tem conta? Faça login</a>
+            </div>
 
-    <script src="./assets/js/cadastro1.js"></script>
+        </form>
+    </div>
+
+    <script src="./assets/js/cadastro.js"></script>
 </body>
+
 </html>
